@@ -25,7 +25,7 @@ namespace AsynchronousClient
             {
                 IPAddress ipAddress = null;
                 IPHostEntry ipHostInfo = Dns.GetHostEntry(host);
-                for (int i = 0; i < ipHostInfo.AddressList.Length; ++i)
+                /*for (int i = 0; i < ipHostInfo.AddressList.Length; ++i)
                 {
                     if (ipHostInfo.AddressList[i].AddressFamily ==
                       AddressFamily.InterNetwork)
@@ -33,8 +33,8 @@ namespace AsynchronousClient
                         ipAddress = ipHostInfo.AddressList[i];
                         break;
                     }
-                }
-
+                }*/
+                ipAddress = IPAddress.Loopback;
                 if (ipAddress == null)
                     throw new Exception("No IPv4 address for server");
                 client = new TcpClient();
