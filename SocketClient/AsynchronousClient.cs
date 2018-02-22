@@ -23,18 +23,9 @@ namespace AsynchronousClient
         {
             try
             {
-                IPAddress ipAddress = null;
-                IPHostEntry ipHostInfo = Dns.GetHostEntry(host);
-                /*for (int i = 0; i < ipHostInfo.AddressList.Length; ++i)
-                {
-                    if (ipHostInfo.AddressList[i].AddressFamily ==
-                      AddressFamily.InterNetwork)
-                    {
-                        ipAddress = ipHostInfo.AddressList[i];
-                        break;
-                    }
-                }*/
-                ipAddress = IPAddress.Loopback;
+                //Server IP address
+                IPAddress ipAddress = IPAddress.Loopback;
+
                 if (ipAddress == null)
                     throw new Exception("No IPv4 address for server");
                 client = new TcpClient();
@@ -70,7 +61,6 @@ namespace AsynchronousClient
                 string responseStr = await reader.ReadLineAsync();
                 CommObject response = serializer.Deserialize<CommObject>(responseStr);
                 return response;
-
             }
             catch (Exception ex)
             {
